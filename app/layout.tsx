@@ -5,9 +5,6 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { InsightsProvider } from "./providers";
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "Brand Insights App",
   description: "Analyze your brand's marketing performance",
