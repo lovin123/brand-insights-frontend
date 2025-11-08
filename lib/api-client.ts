@@ -60,14 +60,12 @@ class APIError extends Error {
 export class BrandInsightsAPI {
   private static readonly BASE_URL =
     process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-  private static readonly TIMEOUT = 30000;
 
   static async analyzeBrand(
     data: BrandAnalysisRequest
   ): Promise<BrandInsights> {
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), this.TIMEOUT);
 
       const response = await fetch(`${this.BASE_URL}/api/brand-insights`, {
         method: "POST",
@@ -77,8 +75,6 @@ export class BrandInsightsAPI {
         body: JSON.stringify(data),
         signal: controller.signal,
       });
-
-      clearTimeout(timeoutId);
 
       if (!response.ok) {
         let errorMessage = "Failed to analyze brand";
